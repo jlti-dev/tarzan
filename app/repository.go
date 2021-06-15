@@ -32,6 +32,7 @@ func dockerBuild(payload GitHubPushEventPayload) (error){
 	err := streamCommand(true, "docker", "build", "--force-rm", "--pull", "--tag", imageNameTag, "--tag", imageNameLatest, fmt.Sprintf("%s#%s",payload.Repository.CloneUrl, payload.Release.Tag_Name))
 	if (err != nil){
 		log.Println(err)
+		return err
 	}
 	return nil
 }
