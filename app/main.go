@@ -41,7 +41,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.Use(loggingMiddleware)
-	router.HandleFunc("/", BuildHookReceiver).Methods("POST")
+	router.HandleFunc("/build", BuildHookReceiver).Methods("POST")
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", 8080) , router))
 }
 
