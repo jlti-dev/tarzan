@@ -1,9 +1,9 @@
-FROM golang:1.15 as builder
+FROM golang:1.16 as builder
 WORKDIR /app
 COPY go.mod go.mod
 RUN go mod download
 COPY app/ .
-RUN GCO_ENABLED=1 GOOS=linux go build -tags netgo -a -installsuffix cgo -o /app/main .
+RUN GCO_ENABLED=1 GOOS=linux GOFLAGS=-mod=mod go build -tags netgo -a -installsuffix cgo -o /app/main .
 
 
 
